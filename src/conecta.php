@@ -7,7 +7,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "vendas";
+$banco = "vendas_2";
 
 /* Configurações para conexão 
 (API/Driver de conexão: PDO (PHP Data Object)) */
