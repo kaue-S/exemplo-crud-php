@@ -43,11 +43,13 @@
 
     <?php foreach( $listaDeProdutos as $produto ){ ?>
         <article class="produto">
-            <h3><?=$produto['nome']?></h3>
+            <h3><?=$produto['produto']?></h3>
+            <h3><?=$produto['fabricante']?></h3>
             <p><b>Preço: <?=formataPreco($produto["preco"])?></b></p>
             <p><b>Quantidade: <?=$produto['quantidade']?></b></p>
+            <p><b>Total:<?= formataPreco($produto['preco'] * $produto['quantidade'])?></b></p>
         </article>
         <?php }?>
     </div>
 </body>
-</html>
+</html> 
