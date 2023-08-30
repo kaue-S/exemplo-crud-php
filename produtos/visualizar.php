@@ -1,7 +1,7 @@
 <?php
     require_once "../src/funcoes-produtos.php";
     $listaDeProdutos = lerProdutos($conexao);
-    
+
     require_once "../src/funcoes-utilitarias.php";
     
 ?>
@@ -48,6 +48,11 @@
             <p><b>Preço: <?=formataPreco($produto["preco"])?></b></p>
             <p><b>Quantidade: <?=$produto['quantidade']?></b></p>
             <p><b>Total:<?= formataPreco($produto['preco'] * $produto['quantidade'])?></b></p>
+
+            <hr>
+            <p>
+                <a href="atualizar.php?id=<?=$produto["id"]?>">Editar</a> | <a href="excluir.php?id=<?=$produto["id"]?>">Excluir</a>
+            </p>
         </article>
         <?php }?>
     </div>

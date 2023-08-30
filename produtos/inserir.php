@@ -43,7 +43,12 @@
             margin: auto;
             text-align: left;
             /* border: 1px solid black; */
-            width: 300px
+            width: 250px
+        }
+
+        input, select, textarea, button{
+            border-radius: 3px;
+            border: none;
         }
     </style>
 </head>
@@ -53,7 +58,7 @@
         <form class="container" action="" method="post">
             <div class="produtos">
             <p>
-                <label for="nome">Nome</label>
+                <label for="nome">Nome: </label>
                 <input type="text" name="nome" id="nome" required>
             </p>
             <p>

@@ -42,4 +42,20 @@
         }
 
     }
+
+    // atualizar produto
+    
+    function lerUmProduto(PDO $conexao, int $id):array {
+    $sql = "SELECT * FROM produtos WHERE id = :id";
+
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+        $consulta->execute();
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $erro) {
+        die("Erro ao atualizar: " . $erro->getMessage());
+    }
+    return $resultado;
+}
 ?>
