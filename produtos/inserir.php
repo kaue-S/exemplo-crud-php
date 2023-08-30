@@ -1,6 +1,23 @@
 <?php
     require_once "../src/funcoes-fabricantes.php";
+    require_once "../src/funcoes-produtos.php";
    $fabricantes = lerFabricantes($conexao);
+
+   if(isset($_POST['inserir'])) {
+    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $preco = filter_input(INPUT_POST, "preco", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+    $quantidade = filter_input(INPUT_POST, "quantidade", FILTER_SANITIZE_NUMBER_INT);
+
+    $fabricante_id = filter_input(INPUT_POST, "fabricante", FILTER_SANITIZE_NUMBER_INT);
+
+    $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    inserirProduto($conexao, $nome, $preco, $quantidade, $fabricante_id, $descricao);
+
+    header("location:visualizar.php");
+   }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,11 +25,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos - Inserção</title>
+    <style>
+        *{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container{
+            width: 500px;
+            text-align: center;
+            padding: 15px;
+            margin: auto;
+            background-color: aqua;
+            box-shadow: rgba(0, 0, 0, 0.3) 0 0 10px 1px;
+            /* border: 1px solid red; */
+        }
+
+        .produtos{
+            margin: auto;
+            text-align: left;
+            /* border: 1px solid black; */
+            width: 300px
+        }
+    </style>
 </head>
 <body>
     <h1>Produtos | INSERT</h1>
     <hr>
-        <form action="" method="post">
+        <form class="container" action="" method="post">
+            <div class="produtos">
             <p>
                 <label for="nome">Nome</label>
                 <input type="text" name="nome" id="nome" required>
@@ -28,7 +67,7 @@
             <p>
                 <label for="fabricante">Fabricante:</label>
                 <select name="fabricante" id="fabricante" required>
-                    <option value=""><?php
+                    <option value="">-<?php
                         foreach($fabricantes as $fabricante){?>
                         <option value="<?=$fabricante['id']?>"><?=$fabricante['nome']?></option>
                     <?php
@@ -40,6 +79,7 @@
                 <label for="descricao">Descrição:</label><br>
                 <textarea name="descricao" id="descricao" cols="30" rows="3"></textarea>
             </p>
+            </div>
             <p>
             <button type="submit" name="inserir">Inserir Produto</button>
             </p>
